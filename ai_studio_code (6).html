@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryo Izakaya | Authentic Japanese Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;600&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ryo-gold': '#C5A059',
+                        'ryo-red': '#E11D48',
+                        'dark-wood': '#121212',
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif JP', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0A0A0A; color: #E5E5E5; }
+        .nav-blur { backdrop-filter: blur(12px); background-color: rgba(10, 10, 10, 0.8); }
+        .bg-wood {
+            background-image: linear-gradient(to bottom, rgba(197, 160, 89, 0.208), rgba(197, 160, 89, 0.203)), 
+                              url('https://www.transparenttextures.com/patterns/dark-wood.png');
+        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Hiệu ứng khung tranh cho trang menu */
+        .menu-page-frame {
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 10px;
+            background: #121212;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-page-frame:hover {
+            border-color: #C5A059;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .btn-gold {
+            border: 1px solid rgb(197, 160, 89);
+            color: #C5A059;
+            transition: all 0.4s;
+        }
+        .btn-gold:hover { background: #C5A059; color: #000; }
+
+        input, textarea {
+            background: rgba(255,255,255,0.03) !important;
+            border: 1px solid rgba(197, 160, 89, 0.2) !important;
+        }
+
+        .hero-slider{
+            animation: heroSlide 18s infinite;
+        }
+
+        @keyframes heroSlide{
+            0%{ transform: translateX(0); }
+            20%{ transform: translateX(0); }
+
+            25%{ transform: translateX(-100vw); }
+            45%{ transform: translateX(-100vw); }
+
+            50%{ transform: translateX(-200vw); }
+            70%{ transform: translateX(-200vw); }
+
+            75%{ transform: translateX(-300vw); }
+            95%{ transform: translateX(-300vw); }
+
+            100%{ transform: translateX(0); }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<!-- FLOATING SOCIAL BUTTONS -->
+<div class="fixed bottom-6 right-6 flex flex-col space-y-4 z-50">
+
+    <!-- Call -->
+    <a href="tel:0828160488"
+       class="w-14 h-14 rounded-full bg-[#b42f1d] flex items-center justify-center shadow-lg hover:scale-110 transition">
+        <i class="fa-solid fa-phone text-white text-lg"></i>
+    </a>
+
+    <!-- Zalo -->
+    <a href="https://zalo.me/0828160488" target="_blank"
+       class="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center shadow-lg hover:scale-110 transition">
+        <span class="text-white font-bold text-sm">Z</span>
+    </a>
+
+    <!-- Google Map -->
+    <a href="https://www.google.com/maps/place/Qu%C3%A1n+nh%E1%BA%ADu+ki%E1%BB%83u+Nh%E1%BA%ADt+t%E1%BA%A1i+Hu%E1%BA%BF+-+Ryo+izakaya/@16.4594114,107.5867565,795m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3141a1b95a6cefcf:0x70d10c8dc305558d!8m2!3d16.4594063!4d107.5893314!16s%2Fg%2F11ytq7xryg?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank"
+       class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center shadow-lg hover:scale-110 transition">
+        <i class="fa-solid fa-location-dot text-white text-lg"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/profile.php?id=61585025789705" target="_blank"
+       class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center shadow-lg hover:scale-110 transition">
+        <i class="fa-brands fa-facebook-f text-white"></i>
+    </a>
+
+</div>
+
+<body class="font-sans antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 nav-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/598149519_122096313729167526_1250406611087312194_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeHQkfs36A7EL7Ar19yC9z-7mEYk0NsqZH2YRiTQ2ypkfff-r6_dd9hetflyJQEaqIErIIEhA7JDnNc88HW6e2kJ&_nc_ohc=1Q0q6qP3YIUQ7kNvwFNAUiA&_nc_oc=AdnvvRpzfLw34aCjNL0Si07GltLG-gz9qq_4X6UCP0zWH-Mlz4KIpQlaL-NZC0IAS5w&_nc_zt=23&_nc_ht=scontent.fdad1-1.fna&_nc_gid=3IVvKWpd0H60rNsJYYJwLg&_nc_ss=8&oh=00_Afx2b49HQ_4eDRkNTvXbFYbj8PI7SmR0IcLybTP1LgPYVQ&oe=69B5695A" alt="Ryo Logo" class="h-12 w-12 object-contain">
+                <div>
+                    <span class="text-xl font-bold tracking-[0.2em] text-white block leading-none">RYO</span>
+                    <!-- <span class="text-[10px] tracking-[0.4em] text-ryo-gold uppercase font-medium">Izakaya</span> -->
+                     <span class="text-[12px] tracking-[0.4em] text-[#b42f1d] uppercase font-semibold">Izakaya</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-10">
+                <div class="flex space-x-8 text-[11px] tracking-[0.2em] font-semibold text-gray-400">
+                    <a href="#about" class="hover:text-white transition uppercase" data-i18n="nav_about">Giới thiệu</a>
+                    <a href="#full-menu" class="hover:text-white transition uppercase" data-i18n="nav_menu">Thực đơn</a>
+                    <a href="#contact" class="hover:text-white transition uppercase" data-i18n="nav_contact">Liên hệ</a>
+                </div>
+                <a href="#reservation" class="btn-gold px-6 py-2 text-[11px] tracking-[0.2em] font-bold" data-i18n="nav_res">ĐẶT BÀN</a>
+                <div class="flex items-center space-x-3 border-l border-white/10 pl-6 text-[10px] font-bold">
+                    <button onclick="changeLang('vi')" class="hover:text-ryo-gold transition">VI</button>
+                    <button onclick="changeLang('en')" class="hover:text-ryo-gold transition">EN</button>
+                    <button onclick="changeLang('ja')" class="hover:text-ryo-gold transition font-serif">JP</button>
+                </div>
+            </div>
+            <button id="mobile-btn" class="md:hidden text-ryo-gold"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+
+        <!-- <div class="absolute inset-0">
+            <img src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/597728518_122100925623167526_5567576216210282697_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeErHTfch4CGhMtrbV9bEoKLdMOONl-uJXZ0w442X64ldqURPcpDZPOcR1xChAF1rRo9tL-kne34DdJKARJlSFXB&_nc_ohc=OqhDYQOh0vgQ7kNvwF0ZXqO&_nc_oc=Adm6jCWvAXbQn1JFWMruv8W5iime0yt4A3okUPrr2MXivIgCLCLFptJPOuUaxq26F04&_nc_zt=23&_nc_ht=scontent.fdad1-1.fna&_nc_gid=4NQWmlkZAhpUq8edwrMW6A&_nc_ss=8&oh=00_AfxZ5w0WntuWK2l3JSyNV0oGGnbR1QGTZLADQdFo4-2QIQ&oe=69B55F73" class="w-full h-full object-cover brightness-[0.3]">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
+        </div> -->
+        <!-- SLIDE BACKGROUND -->
+        <div class="absolute inset-0">
+            <div class="flex w-[400%] h-full hero-slider">
+
+                <img src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/597728518_122100925623167526_5567576216210282697_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeErHTfch4CGhMtrbV9bEoKLdMOONl-uJXZ0w442X64ldqURPcpDZPOcR1xChAF1rRo9tL-kne34DdJKARJlSFXB&_nc_ohc=OqhDYQOh0vgQ7kNvwF0ZXqO&_nc_oc=Adm6jCWvAXbQn1JFWMruv8W5iime0yt4A3okUPrr2MXivIgCLCLFptJPOuUaxq26F04&_nc_zt=23&_nc_ht=scontent.fdad1-1.fna&_nc_gid=4NQWmlkZAhpUq8edwrMW6A&_nc_ss=8&oh=00_AfxZ5w0WntuWK2l3JSyNV0oGGnbR1QGTZLADQdFo4-2QIQ&oe=69B55F73"
+                class="w-screen h-full object-cover brightness-[0.3]">
+
+                <img src="https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/599932430_122100925689167526_2629712290478664576_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHVNHKHsAK8YaNaiupH3iLT3K-L1c3mga7cr4vVzeaBriVdFFvMgq9gQ6QSSjKEidc7JVdmdW_F8zaO5YIoryF5&_nc_ohc=VVEzrdoSMhEQ7kNvwEyWea_&_nc_oc=Adnbld1BhjPheF2Fd20hmdQjZZf0xadPezfeoVoUiaXJmYT82bfi2oywZyq__La4jz4&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=O9mvbGE-i2zUOpB1En8yjQ&_nc_ss=8&oh=00_AfxNjuCivzSm3ElOmRlA1LaO99cLacn1DyInMdDuk2S7mw&oe=69B5BC93"
+                class="w-screen h-full object-cover brightness-[0.3]">
+
+                <img src="https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/600171010_122115464637008879_735678566703879823_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=b895b5&_nc_eui2=AeHIiJ_JuMPQsPXutMTZBBvcJ5hJRsVRd3YnmElGxVF3djbwl_ycMekDBePCY4cLBId4cc-M1WN7mxPTB0dMK-zE&_nc_ohc=kn-rVLYQIK8Q7kNvwH73UEn&_nc_oc=AdmK8EXXgc0TIGJlnGnBceGMK05N5riVJGV8-6WKRFLW3B5kwonyeDSNMf4IlJvlCXw&_nc_zt=23&_nc_ht=scontent.fdad1-2.fna&_nc_gid=0bPiO62FwEuQ1QyAWcu62Q&_nc_ss=8&oh=00_Afwlwsn1cYZ7JkWdkV9DDSy_wRCXFHNxVTzC7-CEeWARCw&oe=69B589AD"
+                class="w-screen h-full object-cover brightness-[0.3]">
+
+                <img src="https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/633439464_122115235857167526_2849675031708421400_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeF69MrG-0047To7GA8jBeDCtDjv-2ZD-kW0OO_7ZkP6RThmFl5yg1zG0l4epnPYYL-DeyL6RCwI6roZDi5vzpy1&_nc_ohc=MacEnw22Li0Q7kNvwEAHlaP&_nc_oc=AdkbX0ut1Af3n8D6FqjAD1zRbRLjiRO2epdvkdiGL9sjpLhxsEqUWyDsknjlcYR0H70&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=C3HB8SiIRCYcz_ye8w0ICQ&_nc_ss=8&oh=00_AfxNRGi8hSuNb16zz3kFYU0W2ekfNjzaIPmprNs8pm7KTw&oe=69B5C208"
+                class="w-screen h-full object-cover brightness-[0.3]">
+
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 reveal active">
+            <h2 class="text-ryo-gold tracking-[0.5em] text-xs uppercase mb-6 font-medium">Authentic Japanese Izakaya</h2>
+            <h1 class="text-6xl md:text-9xl font-serif font-light mb-8 text-white tracking-tight">Ryo <span class="text-ryo-gold italic font-serif">涼</span></h1>
+            <p class="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_tagline">Nơi tinh hoa ẩm thực Nhật Bản giao thoa cùng nhịp sống Cố Đô.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#reservation" class="bg-ryo-red text-white px-10 py-4 font-bold tracking-widest hover:bg-white hover:text-black transition duration-500" data-i18n="btn_reserve">ĐẶT BÀN NGAY</a>
+                <a href="#full-menu" class="btn-gold px-10 py-4 font-bold tracking-widest" data-i18n="nav_menu">THỰC ĐƠN</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-32 bg-wood">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <p class="text-ryo-gold font-serif mb-4 italic">Koso no Aji</p>
+                <h3 class="text-4xl font-serif mb-8 text-white leading-tight" data-i18n="about_title">Trải nghiệm Izakaya truyền thống giữa lòng Huế</h3>
+                <p class="text-gray-400 leading-relaxed mb-6" data-i18n="about_text">Ryo Izakaya không chỉ là một quán ăn, đó là nơi chúng tôi tái hiện lại không khí ấm cúng của những quán nhậu đường phố Tokyo...</p>
+                <div class="grid grid-cols-2 gap-4 mt-10">
+                    <div class="border-l border-ryo-gold pl-4">
+                        <span class="block text-2xl font-serif text-white">100%</span>
+                        <span data-i18n="about_fresh" class="text-[10px] text-gray-500 uppercase tracking-widest">Nguyên liệu tươi sạch</span>
+                    </div>
+                    <div class="border-l border-ryo-gold pl-4">
+                        <span class="block text-2xl font-serif text-white">Sake</span>
+                        <span data-i18n="about_sake" class="text-[10px] text-gray-500 uppercase tracking-widest">Bộ sưu tập đa dạng</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative reveal aspect-[4/5]">
+                <img src="https://www.vinmec.com/static/uploads/20210312_164620_385012_ruou_sake_lam_bang_max_1800x1800_jpg_f3ec4ea861.jpg" class="w-full h-full object-cover border border-white/10">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FULL MENU (NEW) -->
+    <section id="full-menu" class="py-32 bg-[#080808]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-ryo-gold font-serif text-xs uppercase tracking-[0.5em] mb-4">The Collection</h2>
+                <h3 class="text-5xl font-serif text-white mb-6" data-i18n="full_menu_title">Khám Phá Thực Đơn</h3>
+                <p class="text-gray-500 text-sm max-w-lg mx-auto" data-i18n="full_menu_desc">Từ những món nhậu kinh điển đến danh sách các loại rượu Sake tinh túy nhất.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Page 1 -->
+                <div class="reveal">
+                    <div class="menu-page-frame cursor-pointer">
+                        <img src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/601803570_122102154663167526_8957332917072796060_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEin67co6yF5YDnOD0gBTgkmqiWJZ9RFYyaqJYln1EVjLg-n328M26FG1o_4UyrVR5jzp2mxzeRvfKOKsJW8kXO&_nc_ohc=MSUUyAm9_HYQ7kNvwF8DINe&_nc_oc=Adlditjp5HqJW4T3e41V2R9tdzxtE5SuuiLwpjbf3hYty4PfqJFeNDvbaiwt7sN7IMQ&_nc_zt=23&_nc_ht=scontent.fdad1-1.fna&_nc_gid=O3-FK8zi6X85JTOuLWnamg&_nc_ss=8&oh=00_AfwKYfFEuwYLo46NHlnZ4ki3f2qCWHQ6yquq9kd0vSYSxg&oe=69B57B44" alt="Menu Page 1">
+                        <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
+                    </div>
+                </div>
+                <!-- Page 2 -->
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <div class="menu-page-frame cursor-pointer">
+                        <img src="https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/591575182_122102154579167526_539682553930252004_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHfO5HOXfAOxLvhsCdZYXTxEDPAbhO-2JcQM8BuE77Yl8T2v9iNlwbaPNKHvGyxvN2e5X9TSVmvlHGso60eS5sP&_nc_ohc=vqpBYqx-W3sQ7kNvwFamfpb&_nc_oc=Adl5FbchBepwoGv46mMNtY41aWG62c0acn8LlTSlDhTvzhD4hl8yYkA-u8kqoT45emg&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=TlpudM6ZTd1oJk5io-Swug&_nc_ss=8&oh=00_Afyd_tIvjiYOSVd1IPVh_Zg-9JCY_K5WRkR0ZUATnhTESw&oe=69B577CB" alt="Menu Page 2">
+                        <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
+                    </div>
+                </div>
+                <!-- Page 3 -->
+                <div class="reveal" style="transition-delay: 0.4s;">
+                    <div class="menu-page-frame cursor-pointer">
+                        <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/600208962_122102154567167526_39435189710666394_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFog9yt8PYqZb-SMYc1omwgQ29a0lVrEoJDb1rSVWsSggwj2gW7AGYu9Ig0E9krh7pgqhJJt9UHcqxMyaa4P7PJ&_nc_ohc=P_ChCy-S3QYQ7kNvwGH5c5V&_nc_oc=AdnrHaK0drt0uNeQQV7Tek73YCM6SQY5b7unqKBtCUP7FO3dq_fXYxzj9iQ7PNMTnho&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=qQyZ2g6v9enTIXvNdbDAvg&_nc_ss=8&oh=00_Afzoz7-Kp0KZnBTasREM6x_ALWQpYXn51yuh3wG0LkHYYg&oe=69B575E1" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
+                    </div>
+                </div>
+                <!-- Page 4 -->
+                <div class="reveal" style="transition-delay: 0.4s;">
+                    <div class="menu-page-frame cursor-pointer">
+                        <img src="https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/599954129_122102154489167526_429704415584410208_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHnh-RjiOamppRMvvxraRsMtAHkHIOEg_u0AeQcg4SD-48EDZaTqDJ1Qib3g8gGK0hgvnqOODU42sa5PDUWDf0a&_nc_ohc=Y8bn2qya6kwQ7kNvwFalU43&_nc_oc=Adln-am4bNcXknR8ezxTM8S5TZEN47v2_yaxD8VbIPGPHts1XyGsuK2Ahb_JyEuSWa8&_nc_zt=23&_nc_ht=scontent.fdad1-2.fna&_nc_gid=oidOomNiqi95GXmrtyl9Kg&_nc_ss=8&oh=00_AfzBziDNmuGdSNIcZ0OxeJX5-5NTULdibQqrsjkYxNt33g&oe=69B5656A" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
+                    </div>
+                </div>
+                <!-- Page 5 -->
+                <div class="reveal" style="transition-delay: 0.4s;">
+                    <div class="menu-page-frame cursor-pointer">
+                        <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/599950435_122102154477167526_1412157090797953628_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHp7Encop70QtVJq4QrfsKAcQIgBQQ8ophxAiAFBDyimIz4J_FlVWu47ON-eeAxUnyDgx3PzBLSpPDvYJeVcy9T&_nc_ohc=0nFJdV1W8W8Q7kNvwHU0x0S&_nc_oc=AdkknK1GJu_bOuZ1XL7wL_pS90PhgTUH4Kn0cLYZ7rU2qxvg19y_XVi382AG6bHnqC0&_nc_zt=23&_nc_ht=scontent.fdad1-3.fna&_nc_gid=IaCmCIFUaEbP02ckYk3z8Q&_nc_ss=8&oh=00_Afz6UvL8oFTQKrmtQNusgzi0mqsTjgmIZSHNa_kW1jS5DA&oe=69B56F6F" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
+                    </div>
+                </div>
+                <!-- Page 6 -->
+                <div class="reveal" style="transition-delay: 0.4s;">
+                    <div class="menu-page-frame cursor-pointer">
+                        <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/598799780_122102154381167526_3216811653103225060_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFJNC9hxv7XRDEoosMdFpOrTquKN4JxuQhOq4o3gnG5CIXvcPV9UaUw4YwocHbDwmQX4ymORFnMa49qr02S7q_X&_nc_ohc=Uc6X6Ill118Q7kNvwHulT-R&_nc_oc=Adl2t8TrEY8qKEJQZhyT3jbEvBjwsJCH6oX2F2Cpc2vaHK5zPx-GHEZTfWyqC89TLnQ&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=nfzhhZN1TQVqFv04hwhrmQ&_nc_ss=8&oh=00_AfzH9vd9zUEFi2-xoVnQQkk4_v5tpkx3HtdDpt_aX-o5Mw&oe=69B554BF" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIGNATURE DISHES -->
+    <section class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                <div>
+                    <h3 class="text-ryo-gold font-serif text-sm uppercase tracking-[0.4em] mb-4">Must Try</h3>
+                    <h2 class="text-5xl font-serif text-white" data-i18n="menu_title">Món Ngon Đặc Sắc</h2>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="reveal group">
+                    <div class="relative overflow-hidden mb-6 aspect-square border border-white/5 transition duration-700">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-1000">
+                    </div>
+                    <h4 class="text-lg font-serif text-white mb-2" data-i18n="menu_1_name">Yakitori Mix</h4>
+                    <p class="text-xs text-gray-500 font-light" data-i18n="menu_1_desc">Xiên gà nướng than binchotan truyền thống.</p>
+                </div>
+                <div class="reveal group" style="transition-delay: 0.1s;">
+                    <div class="relative overflow-hidden mb-6 aspect-square border border-white/5 transition duration-700">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-1000">
+                    </div>
+                    <h4 class="text-lg font-serif text-white mb-2" data-i18n="menu_2_name">Takoyaki Special</h4>
+                    <p class="text-xs text-gray-500 font-light" data-i18n="menu_2_desc">Bánh bạch tuộc chuẩn vị vùng Osaka.</p>
+                </div>
+                <div class="reveal group" style="transition-delay: 0.2s;">
+                    <div class="relative overflow-hidden mb-6 aspect-square border border-white/5 transition duration-700">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-1000">
+                    </div>
+                    <h4 class="text-lg font-serif text-white mb-2" data-i18n="menu_3_name">Moriawase Sashimi</h4>
+                    <p class="text-xs text-gray-500 font-light" data-i18n="menu_3_desc">Lựa chọn 5 loại cá tươi ngon nhất trong ngày.</p>
+                </div>
+                <div class="reveal group" style="transition-delay: 0.2s;">
+                    <div class="relative overflow-hidden mb-6 aspect-square border border-white/5 transition duration-700">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-1000">
+                    </div>
+                    <h4 class="text-lg font-serif text-white mb-2" data-i18n="menu_3_name">Moriawase Sashimi</h4>
+                    <p class="text-xs text-gray-500 font-light" data-i18n="menu_3_desc">Lựa chọn 5 loại cá tươi ngon nhất trong ngày.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section id="reservation" class="py-32 bg-wood border-y border-white/5">
+        <div class="max-w-3xl mx-auto px-6 text-center reveal">
+            <h2 class="text-4xl font-serif mb-4 text-white" data-i18n="res_title">Đặt Bàn</h2>
+            <p class="text-gray-500 text-sm mb-12" data-i18n="res_subtitle">Để phục vụ quý khách tốt nhất, vui lòng đặt bàn trước.</p>
+            
+            <form id="resForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div class="space-y-6">
+                    <input id="name" type="text" data-i18n-placeholder="form_name" placeholder="Họ và tên" required class="w-full p-4 text-sm text-white focus:border-ryo-gold transition">
+                    <input id="phone" type="tel" data-i18n-placeholder="form_tel" placeholder="Số điện thoại" required class="w-full p-4 text-sm text-white focus:border-ryo-gold transition">
+                    <input id="people" type="number" data-i18n-placeholder="form_number" placeholder="Số người" class="w-full p-4 text-sm text-white focus:border-ryo-gold transition">
+                </div>
+                <div class="space-y-6">
+                    <input id="date" type="date" required class="w-full p-4 text-sm text-white focus:border-ryo-gold transition">
+                    <input id="time" type="time" required class="w-full p-4 text-sm text-white focus:border-ryo-gold transition">
+                    <input id="note" type="text" data-i18n-placeholder="form_note" placeholder="Ghi chú thêm" class="w-full p-4 text-sm text-white focus:border-ryo-gold transition">
+                </div>
+                <button id="submitBtn" data-i18n="btn_form_submit" class="md:col-span-2 bg-ryo-gold text-black py-5 font-bold tracking-[0.3em] uppercase hover:bg-white transition duration-500">Gửi Yêu Cầu</button>
+            </form>
+            <p id="successMsg" class="hidden mt-8 text-ryo-gold font-serif italic" data-i18n="form_success">Chúng tôi đã nhận được thông tin, Ryo sẽ gọi lại sớm nhất.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT & MAP -->
+    <section id="contact" class="grid md:grid-cols-2">
+        <div class="p-16 md:p-32 flex flex-col justify-center reveal">
+            <h4 class="text-ryo-gold font-serif mb-10 tracking-widest uppercase text-sm">Contact Info</h4>
+            <div class="space-y-12">
+                <div>
+                    <span data-i18n="address" class="block text-gray-600 text-[10px] tracking-[0.3em] uppercase mb-2">Địa chỉ</span>
+                    <p class="text-xl font-serif text-white">51 Hai Bà Trưng, Phường Vĩnh Ninh, TP. Huế</p>
+                </div>
+                <div>
+                    <span data-i18n="tel" class="block text-gray-600 text-[10px] tracking-[0.3em] uppercase mb-2">Điện thoại</span>
+                    <p class="text-xl font-serif text-white">0828 160 488</p>
+                </div>
+                <div>
+                    <span data-i18n="time" class="block text-gray-600 text-[10px] tracking-[0.3em] uppercase mb-2">Giờ mở cửa</span>
+                    <p class="text-xl font-serif text-white">11:00 AM — 00:00 AM</p>
+                </div>
+            </div>
+            <div class="flex space-x-6 mt-20">
+                <a href="https://www.facebook.com/profile.php?id=61585025789705" target="_blank"
+                class="w-12 h-12 flex items-center justify-center border border-white/10 hover:border-[#b42f1d] hover:bg-[#b42f1d] transition duration-300">
+                    <i class="fa-brands fa-facebook-f text-white"></i>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank"
+                class="w-12 h-12 flex items-center justify-center border border-white/10 hover:border-[#b42f1d] hover:bg-[#b42f1d] transition duration-300">
+                    <i class="fa-brands fa-instagram text-white"></i>
+                </a>
+                <a href="https://maps.google.com/?q=51+Hai+Ba+Trung+Hue" target="_blank"
+                class="w-12 h-12 flex items-center justify-center border border-white/10 hover:border-[#b42f1d] hover:bg-[#b42f1d] transition duration-300">
+                    <i class="fa-solid fa-location-dot text-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="h-[500px] md:h-auto contrast-[1.2] transition duration-1000">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3462.6187978453313!2d107.58675647460774!3d16.459411428875374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a1b95a6cefcf%3A0x70d10c8dc305558d!2zUXXDoW4gbmjhuq11IGtp4buDdSBOaOG6rXQgdOG6oWkgSHXhur8gLSBSeW8gaXpha2F5YQ!5e1!3m2!1svi!2s!4v1773131607786!5m2!1svi!2s" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 text-center border-t border-white/5 bg-black">
+        <p class="text-[10px] text-gray-700 tracking-[0.5em] uppercase">&copy; 2026 Ryo Izakaya Hue. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            vi: {
+                nav_about: "GIỚI THIỆU", nav_menu: "THỰC ĐƠN", nav_contact: "LIÊN HỆ", nav_res: "ĐẶT BÀN",
+                hero_tagline: "Nơi tinh hoa ẩm thực Nhật Bản giao thoa cùng nhịp sống Cố Đô.",
+                btn_reserve: "ĐẶT BÀN NGAY",
+                about_title: "Trải nghiệm Izakaya truyền thống giữa lòng Huế",
+                about_text: "Ryo Izakaya không chỉ là một quán ăn, đó là nơi chúng tôi tái hiện lại không khí ấm cúng của những quán nhậu đường phố Tokyo...",
+                full_menu_title: "Thực Đơn Tổng Hợp",
+                full_menu_desc: "Toàn bộ các món ăn và đồ uống tinh túy được phục vụ tại Ryo.",
+                menu_title: "Món Ngon Đặc Sắc",
+                menu_1_name: "Yakitori Mix", menu_1_desc: "Xiên gà nướng than binchotan truyền thống.",
+                menu_2_name: "Takoyaki Đặc biệt", menu_2_desc: "Bánh bạch tuộc chuẩn vị vùng Osaka.",
+                menu_3_name: "Moriawase Sashimi", menu_3_desc: "Lựa chọn 5 loại cá tươi ngon nhất trong ngày.",
+                res_title: "Đặt Bàn", btn_form_submit: "GỬI YÊU CẦU",
+                about_sake: "Bộ sưu tập đa dạng",
+                about_fresh: "Nguyên liệu tươi sạch",
+                res_subtitle: "Để phục vụ quý khách tốt nhất, vui lòng đặt bàn trước.",
+                form_name: "Họ và tên",
+                form_tel: "Số điện thoại",
+                form_note: "Ghi chú",
+                address: "Địa chỉ",
+                tel: "Điện thoại",
+                time: "Giờ mở cửa"
+            },
+            en: {
+                nav_about: "ABOUT", nav_menu: "MENU", nav_contact: "CONTACT", nav_res: "RESERVE",
+                hero_tagline: "Where Japanese culinary excellence meets the heart of the Ancient Capital.",
+                btn_reserve: "RESERVE NOW",
+                about_title: "Traditional Izakaya Experience",
+                about_text: "Ryo Izakaya is more than just a restaurant; it's a place where we recreate the cozy atmosphere of Tokyo street diners...",
+                full_menu_title: "Our Full Menu",
+                full_menu_desc: "Explore our complete selection of authentic dishes and refined sake.",
+                menu_title: "Signature Dishes",
+                menu_1_name: "Yakitori Mix", menu_1_desc: "Traditional charcoal-grilled chicken skewers.",
+                menu_2_name: "Takoyaki Special", menu_2_desc: "Authentic Osaka-style octopus balls.",
+                menu_3_name: "Moriawase Sashimi", menu_3_desc: "Daily selection of 5 premium fresh fishes.",
+                res_title: "Reservation", btn_form_submit: "SEND REQUEST",
+                about_sake: "Diverse collection",
+                about_fresh: "Fresh and clean ingredients",
+                res_subtitle: "To provide you with the best service, please make a reservation in advance.",
+                form_name: "Full name",
+                form_tel: "Phone number",
+                form_number: "Number of people",
+                form_note: "Note",
+                address: "Address",
+                tel: "Phone number",
+                time: "Time"
+            },
+            ja: {
+                nav_about: "紹介", nav_menu: "メニュー", nav_contact: "連絡先", nav_res: "予約",
+                hero_tagline: "日本の食の真髄と古都の魂が交わる場所。",
+                btn_reserve: "今すぐ予約",
+                about_title: "フエ中心部の伝統的な居酒屋",
+                about_text: "Ryo Izakayaは単なるレストランではありません。東京の路地裏のような温かい雰囲気を再現した場所です...",
+                full_menu_title: "全メニュー",
+                full_menu_desc: "当店の料理と日本酒の全ラインナップをご覧ください。",
+                menu_title: "おすすめメニュー",
+                menu_1_name: "焼き鳥盛り合わせ", menu_1_desc: "伝統的な備長炭で焼き上げた鶏串。",
+                menu_2_name: "特製たこ焼き", menu_2_desc: "本場大阪の味を再現したたこ焼き。",
+                menu_3_name: "刺身盛り合わせ", menu_3_desc: "本日の新鮮な鮮魚5種盛り合わせ。",
+                res_title: "ご予約", btn_form_submit: "送信する",
+                about_sake: "多様なコレクション",
+                about_fresh: "新鮮で清潔な食材",
+                res_subtitle: "最高のサービスをご提供するために、事前にご予約をお願いいたします。",
+                form_name: "フルネーム",
+                form_tel: "電話番号",
+                form_number: "量",
+                form_note: "注記",
+                address: "住所",
+                tel: "電話番号",
+                time: "営業時間"
+            }
+        };
+
+        function changeLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('ryo_lang', lang);
+
+            document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+                const key = el.getAttribute("data-i18n-placeholder");
+                if (translations[lang][key]) el.placeholder = translations[lang][key];
+            });
+        }       
+            
+        const savedLang = localStorage.getItem('ryo_lang') || 'vi';
+        changeLang(savedLang);
+
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        });
+        
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwY4mWwGqOgw5sElqGGPA-gHbqP1_oU5lnDs4ZZ7OTfw_2731L1Qz6PkJFuKQVaN15H/exec";
+
+        document.getElementById('resForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Processing...';
+
+            const form = e.target;
+            const data = {
+                name: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                people: document.getElementById("people").value,
+                date: document.getElementById("date").value,
+                time: document.getElementById("time").value,
+                note: document.getElementById("note").value
+            };
+        fetch(scriptURL,{
+            method:"POST",
+            mode:"no-cors",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(()=>{
+            document.getElementById('successMsg').classList.remove('hidden');
+            submitBtn.innerText = 'DONE!';
+            form.reset();
+        })
+        .catch(err=>{
+            console.log(err);
+        });            
+
+            // fetch(scriptURL,{
+            //     method:"POST",
+            //     mode: "no-cors",
+            //     body: JSON.stringify(data),
+            //     headers:{
+            //         "Content-Type":"application/json"
+            //     }
+            // })
+            // .then(res => res.json())
+            // .then(() => {
+            //     document.getElementById('successMsg').classList.remove('hidden');
+            //     form.reset();
+            // })
+            // .catch(err=>{
+            //     console.log(err);
+            //     alert("Không gửi được dữ liệu");
+            // });
+        });
+    </script>
+</body>
+</html>
