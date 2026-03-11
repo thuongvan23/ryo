@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Ryo Izakaya",
+    "image": "https://ryo-ten.vercel.app/logo.png",
+    "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "51 Hai Bà Trưng",
+    "addressLocality": "Huế",
+    "addressCountry": "VN"
+    },
+    "servesCuisine": "Japanese",
+    "telephone": "+84828160488",
+    "url": "https://ryo-ten.vercel.app",
+    "priceRange": "$$"
+    }
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryo Izakaya | Authentic Japanese Experience</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Ryo Izakaya Huế – quán nhậu Nhật Bản authentic tại 51 Hai Bà Trưng. Yakitori, Sashimi, Takoyaki, Sake và trải nghiệm Izakaya chuẩn Tokyo.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ryo Izakaya Huế">
+    <meta property="og:description" content="Authentic Japanese Izakaya tại Huế">
+    <meta property="og:image" content="https://ryo-ten.vercel.app/og-image.jpg">
+    <meta property="og:url" content="https://ryo-ten.vercel.app/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>Ryo Izakaya Huế | Quán nhậu Nhật Bản Authentic tại Huế</title>
+
+    <link rel="canonical" href="https://ryo-ten.vercel.app/">
+    <link rel="icon" type="image/png" href="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/598149519_122096313729167526_1250406611087312194_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeHQkfs36A7EL7Ar19yC9z-7mEYk0NsqZH2YRiTQ2ypkfff-r6_dd9hetflyJQEaqIErIIEhA7JDnNc88HW6e2kJ&_nc_ohc=1Q0q6qP3YIUQ7kNvwFNAUiA&_nc_oc=AdnvvRpzfLw34aCjNL0Si07GltLG-gz9qq_4X6UCP0zWH-Mlz4KIpQlaL-NZC0IAS5w&_nc_zt=23&_nc_ht=scontent.fdad1-1.fna&_nc_gid=3IVvKWpd0H60rNsJYYJwLg&_nc_ss=8&oh=00_Afx2b49HQ_4eDRkNTvXbFYbj8PI7SmR0IcLybTP1LgPYVQ&oe=69B5695A">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;600&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -120,7 +150,6 @@
                 <img src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/598149519_122096313729167526_1250406611087312194_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeHQkfs36A7EL7Ar19yC9z-7mEYk0NsqZH2YRiTQ2ypkfff-r6_dd9hetflyJQEaqIErIIEhA7JDnNc88HW6e2kJ&_nc_ohc=1Q0q6qP3YIUQ7kNvwFNAUiA&_nc_oc=AdnvvRpzfLw34aCjNL0Si07GltLG-gz9qq_4X6UCP0zWH-Mlz4KIpQlaL-NZC0IAS5w&_nc_zt=23&_nc_ht=scontent.fdad1-1.fna&_nc_gid=3IVvKWpd0H60rNsJYYJwLg&_nc_ss=8&oh=00_Afx2b49HQ_4eDRkNTvXbFYbj8PI7SmR0IcLybTP1LgPYVQ&oe=69B5695A" alt="Ryo Logo" class="h-12 w-12 object-contain">
                 <div>
                     <span class="text-xl font-bold tracking-[0.2em] text-white block leading-none">RYO</span>
-                    <!-- <span class="text-[10px] tracking-[0.4em] text-ryo-gold uppercase font-medium">Izakaya</span> -->
                      <span class="text-[12px] tracking-[0.4em] text-[#b42f1d] uppercase font-semibold">Izakaya</span>
                 </div>
             </div>
@@ -141,29 +170,6 @@
             <button id="mobile-btn" class="md:hidden text-ryo-gold"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
         </div>
     </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 w-full bg-black/95 backdrop-blur-lg border-b border-white/10 z-40">
-        <div class="flex flex-col text-center py-6 space-y-6 text-sm tracking-[0.2em] font-semibold text-gray-300">
-
-            <a href="#about" class="hover:text-white transition uppercase" data-i18n="nav_about">Giới thiệu</a>
-
-            <a href="#full-menu" class="hover:text-white transition uppercase" data-i18n="nav_menu">Thực đơn</a>
-
-            <a href="#contact" class="hover:text-white transition uppercase" data-i18n="nav_contact">Liên hệ</a>
-
-            <a href="#reservation" class="btn-gold mx-auto px-6 py-2 text-[11px] tracking-[0.2em] font-bold">
-                ĐẶT BÀN
-            </a>
-
-            <div class="flex justify-center space-x-4 pt-4 border-t border-white/10 text-xs">
-                <button onclick="changeLang('vi')" class="hover:text-ryo-gold">VI</button>
-                <button onclick="changeLang('en')" class="hover:text-ryo-gold">EN</button>
-                <button onclick="changeLang('ja')" class="hover:text-ryo-gold font-serif">JP</button>
-            </div>
-
-        </div>
-    </div>  
 
     <!-- HERO -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
@@ -415,7 +421,6 @@
                 res_subtitle: "Để phục vụ quý khách tốt nhất, vui lòng đặt bàn trước.",
                 form_name: "Họ và tên",
                 form_tel: "Số điện thoại",
-                form_number: "Số người",
                 form_note: "Ghi chú",
                 address: "Địa chỉ",
                 tel: "Điện thoại",
@@ -527,44 +532,8 @@
         })
         .catch(err=>{
             console.log(err);
-        });            
-
-            // fetch(scriptURL,{
-            //     method:"POST",
-            //     mode: "no-cors",
-            //     body: JSON.stringify(data),
-            //     headers:{
-            //         "Content-Type":"application/json"
-            //     }
-            // })
-            // .then(res => res.json())
-            // .then(() => {
-            //     document.getElementById('successMsg').classList.remove('hidden');
-            //     form.reset();
-            // })
-            // .catch(err=>{
-            //     console.log(err);
-            //     alert("Không gửi được dữ liệu");
-            // });
         });
-    
-    </script>
-    <script>
-        const mobileBtn = document.getElementById("mobile-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const icon = mobileBtn.querySelector("i");
-
-        mobileBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-
-            if(mobileMenu.classList.contains("hidden")){
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars-staggered");
-            }else{
-                icon.classList.remove("fa-bars-staggered");
-                icon.classList.add("fa-xmark");
-            }
-        });
+    });
     </script>
 </body>
 </html>
