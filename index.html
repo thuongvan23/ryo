@@ -141,8 +141,37 @@
 
 </div>
 
-<body class="font-sans antialiased">
+<div id="women-popup" class="fixed inset-0 bg-black/70 flex items-center justify-center z-[999] hidden">
+        
+        <div class="bg-[#111] border border-ryo-gold p-10 max-w-md text-center relative">
+            
+            <button onclick="closeWomenPopup()" 
+            class="absolute top-3 right-4 text-gray-400 hover:text-white">
+            <i class="fa-solid fa-xmark"></i>
+            </button>
 
+            <h3 class="text-ryo-gold font-serif text-sm tracking-[0.4em] mb-4">
+            🌸 WOMEN'S DAY
+            </h3>
+
+            <h2 class="text-3xl font-serif text-white mb-6">
+            Happy 8/3
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-8">
+            Ryo Izakaya gửi tặng những vị khách nữ món quà nhỏ trong ngày Quốc Tế Phụ Nữ.  
+            Cảm ơn vì đã luôn tỏa sáng ✨
+            </p>
+
+            <a href="#reservation"
+            class="bg-ryo-red px-8 py-3 text-white text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition">
+            Đặt Bàn Ngay
+            </a>
+</div>
+
+<body class="font-sans antialiased">
+    <!-- WOMEN DAY POPUP (remove after 8/3) -->
+    </div>
     <!-- NAVIGATION -->
     <nav class="fixed w-full z-50 nav-blur border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -170,6 +199,8 @@
             <button id="mobile-btn" class="md:hidden text-ryo-gold"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
         </div>
     </nav>
+
+    
 
     <!-- HERO -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
@@ -534,6 +565,15 @@
             console.log(err);
         });
     });
+    // WOMEN DAY POPUP
+    setTimeout(()=>{
+        const popup = document.getElementById("women-popup");
+        if(popup) popup.classList.remove("hidden");
+    },2000);
+
+    function closeWomenPopup(){
+        document.getElementById("women-popup").classList.add("hidden");
+    }   
     </script>
 </body>
 </html>
