@@ -110,6 +110,68 @@
 
             100%{ transform: translateX(0); }
         }
+        /* ===== WOMEN DAY EFFECT - DELETE AFTER 8/3 ===== */
+        .flower{
+            position:fixed;
+            top:-50px;
+            font-size:18px;
+            animation:fall linear forwards;
+            z-index:5;
+            pointer-events:none;
+        }
+
+        @keyframes fall{
+            to{
+                transform:translateY(110vh) rotate(360deg);
+                opacity:0;
+            }
+        }
+
+        /* popup */
+        .women-popup{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.65);
+            backdrop-filter:blur(4px);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:999;
+        }
+
+        .women-popup-box{
+            background:#111;
+            border:1px solid rgba(197,160,89,0.5);
+            padding:40px;
+            text-align:center;
+            max-width:420px;
+            animation:popupScale .6s ease;
+        }
+
+        @keyframes popupScale{
+            from{
+                opacity:0;
+                transform:scale(.8);
+            }
+            to{
+                opacity:1;
+                transform:scale(1);
+            }
+        }
+
+        .women-popup button{
+            margin-top:20px;
+            padding:10px 22px;
+            border:1px solid #C5A059;
+            color:#C5A059;
+            background:none;
+            transition:.3s;
+        }
+
+        .women-popup button:hover{
+            background:#C5A059;
+            color:black;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -136,6 +198,69 @@
         <i class="fa-brands fa-facebook-f text-white"></i>
     </a>
 </div>
+
+<!-- WOMEN DAY POPUP -->
+<div id="womenPopup" class="women-popup">
+    <div class="women-popup-box">
+        <h3 class="text-2xl font-serif text-white mb-4">
+            🌸 Happy Women's Day
+        </h3>
+
+        <p class="text-gray-400 text-sm leading-relaxed">
+            Ryo Izakaya xin gửi lời chúc tốt đẹp nhất tới tất cả những người phụ nữ tuyệt vời.  
+            Chúc bạn một ngày 8/3 thật nhiều niềm vui và hạnh phúc.
+        </p>
+
+        <button onclick="closeWomenPopup()">
+            ARIGATO
+        </button>
+    </div>
+</div>
+<script>
+
+    /* ===== WOMEN DAY EFFECT ===== */
+
+    function createFlower(){
+        const flower = document.createElement("div");
+        flower.className = "flower";
+
+        const flowers = ["🌸","🌺","💮"];
+        flower.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+
+        flower.style.left = Math.random()*100+"vw";
+        flower.style.animationDuration = (4+Math.random()*4)+"s";
+        flower.style.fontSize = (14+Math.random()*18)+"px";
+
+        document.body.appendChild(flower);
+
+        setTimeout(()=>{
+            flower.remove();
+        },8000);
+    }
+
+        /* tạo hoa */
+        const flowerInterval = setInterval(createFlower,350);
+
+        /* dừng sau 20s */
+        setTimeout(()=>{
+            clearInterval(flowerInterval);
+        },20000);
+
+
+        /* popup */
+
+    function closeWomenPopup(){
+        document.getElementById("womenPopup").style.display="none";
+    }
+
+    /* auto close after 6s */
+
+    setTimeout(()=>{
+        const popup = document.getElementById("womenPopup");
+        if(popup) popup.style.display="none";
+    },6000);
+
+</script>
 
 <body class="font-sans antialiased">
     <!-- NAVIGATION -->
@@ -280,28 +405,28 @@
                 <!-- Page 3 -->
                 <div class="reveal" style="transition-delay: 0.4s;">
                     <div class="menu-page-frame cursor-pointer">
-                        <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/600208962_122102154567167526_39435189710666394_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFog9yt8PYqZb-SMYc1omwgQ29a0lVrEoJDb1rSVWsSggwj2gW7AGYu9Ig0E9krh7pgqhJJt9UHcqxMyaa4P7PJ&_nc_ohc=P_ChCy-S3QYQ7kNvwGH5c5V&_nc_oc=AdnrHaK0drt0uNeQQV7Tek73YCM6SQY5b7unqKBtCUP7FO3dq_fXYxzj9iQ7PNMTnho&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=qQyZ2g6v9enTIXvNdbDAvg&_nc_ss=8&oh=00_Afzoz7-Kp0KZnBTasREM6x_ALWQpYXn51yuh3wG0LkHYYg&oe=69B575E1" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/600208962_122102154567167526_39435189710666394_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFog9yt8PYqZb-SMYc1omwgQ29a0lVrEoJDb1rSVWsSggwj2gW7AGYu9Ig0E9krh7pgqhJJt9UHcqxMyaa4P7PJ&_nc_ohc=P_ChCy-S3QYQ7kNvwGH5c5V&_nc_oc=AdnrHaK0drt0uNeQQV7Tek73YCM6SQY5b7unqKBtCUP7FO3dq_fXYxzj9iQ7PNMTnho&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=qQyZ2g6v9enTIXvNdbDAvg&_nc_ss=8&oh=00_Afzoz7-Kp0KZnBTasREM6x_ALWQpYXn51yuh3wG0LkHYYg&oe=69B575E1" alt="Menu Page 3">
                         <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
                     </div>
                 </div>
                 <!-- Page 4 -->
                 <div class="reveal" style="transition-delay: 0.4s;">
                     <div class="menu-page-frame cursor-pointer">
-                        <img src="https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/599954129_122102154489167526_429704415584410208_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHnh-RjiOamppRMvvxraRsMtAHkHIOEg_u0AeQcg4SD-48EDZaTqDJ1Qib3g8gGK0hgvnqOODU42sa5PDUWDf0a&_nc_ohc=Y8bn2qya6kwQ7kNvwFalU43&_nc_oc=Adln-am4bNcXknR8ezxTM8S5TZEN47v2_yaxD8VbIPGPHts1XyGsuK2Ahb_JyEuSWa8&_nc_zt=23&_nc_ht=scontent.fdad1-2.fna&_nc_gid=oidOomNiqi95GXmrtyl9Kg&_nc_ss=8&oh=00_AfzBziDNmuGdSNIcZ0OxeJX5-5NTULdibQqrsjkYxNt33g&oe=69B5656A" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <img src="https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/599954129_122102154489167526_429704415584410208_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHnh-RjiOamppRMvvxraRsMtAHkHIOEg_u0AeQcg4SD-48EDZaTqDJ1Qib3g8gGK0hgvnqOODU42sa5PDUWDf0a&_nc_ohc=Y8bn2qya6kwQ7kNvwFalU43&_nc_oc=Adln-am4bNcXknR8ezxTM8S5TZEN47v2_yaxD8VbIPGPHts1XyGsuK2Ahb_JyEuSWa8&_nc_zt=23&_nc_ht=scontent.fdad1-2.fna&_nc_gid=oidOomNiqi95GXmrtyl9Kg&_nc_ss=8&oh=00_AfzBziDNmuGdSNIcZ0OxeJX5-5NTULdibQqrsjkYxNt33g&oe=69B5656A" alt="Menu Page 4">
                         <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
                     </div>
                 </div>
                 <!-- Page 5 -->
                 <div class="reveal" style="transition-delay: 0.4s;">
                     <div class="menu-page-frame cursor-pointer">
-                        <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/599950435_122102154477167526_1412157090797953628_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHp7Encop70QtVJq4QrfsKAcQIgBQQ8ophxAiAFBDyimIz4J_FlVWu47ON-eeAxUnyDgx3PzBLSpPDvYJeVcy9T&_nc_ohc=0nFJdV1W8W8Q7kNvwHU0x0S&_nc_oc=AdkknK1GJu_bOuZ1XL7wL_pS90PhgTUH4Kn0cLYZ7rU2qxvg19y_XVi382AG6bHnqC0&_nc_zt=23&_nc_ht=scontent.fdad1-3.fna&_nc_gid=IaCmCIFUaEbP02ckYk3z8Q&_nc_ss=8&oh=00_Afz6UvL8oFTQKrmtQNusgzi0mqsTjgmIZSHNa_kW1jS5DA&oe=69B56F6F" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/599950435_122102154477167526_1412157090797953628_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHp7Encop70QtVJq4QrfsKAcQIgBQQ8ophxAiAFBDyimIz4J_FlVWu47ON-eeAxUnyDgx3PzBLSpPDvYJeVcy9T&_nc_ohc=0nFJdV1W8W8Q7kNvwHU0x0S&_nc_oc=AdkknK1GJu_bOuZ1XL7wL_pS90PhgTUH4Kn0cLYZ7rU2qxvg19y_XVi382AG6bHnqC0&_nc_zt=23&_nc_ht=scontent.fdad1-3.fna&_nc_gid=IaCmCIFUaEbP02ckYk3z8Q&_nc_ss=8&oh=00_Afz6UvL8oFTQKrmtQNusgzi0mqsTjgmIZSHNa_kW1jS5DA&oe=69B56F6F" alt="Menu Page 5">
                         <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
                     </div>
                 </div>
                 <!-- Page 6 -->
                 <div class="reveal" style="transition-delay: 0.4s;">
                     <div class="menu-page-frame cursor-pointer">
-                        <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/598799780_122102154381167526_3216811653103225060_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFJNC9hxv7XRDEoosMdFpOrTquKN4JxuQhOq4o3gnG5CIXvcPV9UaUw4YwocHbDwmQX4ymORFnMa49qr02S7q_X&_nc_ohc=Uc6X6Ill118Q7kNvwHulT-R&_nc_oc=Adl2t8TrEY8qKEJQZhyT3jbEvBjwsJCH6oX2F2Cpc2vaHK5zPx-GHEZTfWyqC89TLnQ&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=nfzhhZN1TQVqFv04hwhrmQ&_nc_ss=8&oh=00_AfzH9vd9zUEFi2-xoVnQQkk4_v5tpkx3HtdDpt_aX-o5Mw&oe=69B554BF" class="w-full aspect-[1/1.4] object-cover opacity-80 hover:opacity-100 transition duration-500" alt="Menu Page 3">
+                        <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/598799780_122102154381167526_3216811653103225060_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFJNC9hxv7XRDEoosMdFpOrTquKN4JxuQhOq4o3gnG5CIXvcPV9UaUw4YwocHbDwmQX4ymORFnMa49qr02S7q_X&_nc_ohc=Uc6X6Ill118Q7kNvwHulT-R&_nc_oc=Adl2t8TrEY8qKEJQZhyT3jbEvBjwsJCH6oX2F2Cpc2vaHK5zPx-GHEZTfWyqC89TLnQ&_nc_zt=23&_nc_ht=scontent.fdad2-1.fna&_nc_gid=nfzhhZN1TQVqFv04hwhrmQ&_nc_ss=8&oh=00_AfzH9vd9zUEFi2-xoVnQQkk4_v5tpkx3HtdDpt_aX-o5Mw&oe=69B554BF" alt="Menu Page 6">
                         <p class="text-center mt-4 text-[10px] tracking-[0.3em] text-ryo-gold uppercase font-bold">Food Menu</p>
                     </div>
                 </div>
